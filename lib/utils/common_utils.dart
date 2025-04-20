@@ -10,7 +10,9 @@ class CommonUtils {
   }) {
     if (StringUtils.isNullOrEmpty(value) && isRequired) {
       return AppConstants.mobileNumberRequired;
-    } else if (value!.length > 10) {
+    } else if (value!.length < 10) {
+      return AppConstants.invalidMobileNum;
+    } else if (value.length > 10) {
       return AppConstants.mobileNumberMaxLength;
     }
     return null;

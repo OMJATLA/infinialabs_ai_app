@@ -108,7 +108,6 @@ class StringFormField extends StatelessWidget {
         hintText: hintText,
         helperText: helperText,
         counterText: counterText,
-        alignLabelWithHint: true,
       ),
       onChanged: onChanged,
       onTap: onTap,

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:infinialabs_ai/app_repository_widget.dart';
 import 'package:infinialabs_ai/bloc/app_init/app_init_bloc.dart';
 import 'package:infinialabs_ai/bloc_widget.dart';
 import 'package:infinialabs_ai/screens/dashboard/dashboard_screen.dart';
-import 'package:infinialabs_ai/screens/login/login_screen.dart';
+import 'package:infinialabs_ai/screens/auth/auth_screen.dart';
 import 'package:infinialabs_ai/theme/app_theme_data.dart';
 
 void main() {
@@ -18,7 +20,10 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(const AppRepositoryWidget(child: BlocWidget(child: MyApp())));
 }
 
@@ -27,10 +32,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightThemeData,
-      home: const Scaffold(body: _InfinialabsAiApp()),
+      home: const Scaffold(body: SafeArea(child: _InfinialabsAiApp())),
     );
   }
 }
@@ -43,11 +48,11 @@ class _InfinialabsAiApp extends StatelessWidget {
     return BlocBuilder<AppInitBloc, AppInitState>(
       builder: (context, state) {
         if (state is AppInitLoggedOutState) {
-          return const LoginScreen();
+          return const AuthScreen();
         } else if (state is AppInitLoggedInState) {
           return const DashboardScreen();
         }
-        return const LoginScreen();
+        return const AuthScreen();
       },
     );
   }

@@ -33,4 +33,9 @@ class AuthAppRepository extends AuthRepository {
   Future<String?> getAuthToken() {
     return _userAuthLocalRepo.getAuthToken();
   }
+
+  @override
+  Future<void> removeAuthInfo() {
+    return _userAuthLocalRepo.removeAuthInfo();
+  }
 }

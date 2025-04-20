@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:infinialabs_ai/data%20provider/user/user_repository.dart';
+import 'package:infinialabs_ai/model/user.dart';
 
 part 'user_load_state.dart';
 
@@ -15,9 +16,9 @@ class UserLoadCubit extends Cubit<UserLoadState> {
     try {
       emit(const UserLoadingState());
 
-      await userRepository.getUserProfile();
+      final user = await userRepository.getUserProfile();
 
-      emit(UserLoadedState());
+      emit(UserLoadedState(user: user));
     } catch (_) {
       emit(const UserLoadFailedState());
     }
