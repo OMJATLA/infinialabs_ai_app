@@ -51,3 +51,66 @@ class GetWarningSnackBar extends GetSnackBar {
   @override
   String get message => msg;
 }
+
+class GetSuccessSnackBar extends GetSnackBar {
+  final String msg;
+  final Icon? customIcon;
+  final int seconds;
+  final SnackbarClosed? snackbarClosed;
+
+  GetSuccessSnackBar({
+    super.key,
+    required this.msg,
+    this.customIcon,
+    this.seconds = 3,
+    this.snackbarClosed,
+  }) : super(
+         margin: const EdgeInsets.all(8),
+         duration: Duration(seconds: seconds),
+         borderRadius: 8,
+         backgroundColor: Colors.green,
+         icon:
+             customIcon ?? const Icon(Icons.check_circle, color: Colors.white),
+         messageText: Text(msg, style: const TextStyle(color: Colors.white)),
+         snackbarStatus: (status) {
+           if (status == SnackbarStatus.CLOSED && snackbarClosed != null) {
+             snackbarClosed();
+           }
+         },
+       );
+
+  @override
+  String get message => msg;
+}
+
+class GetErrorSnackBar extends GetSnackBar {
+  final String msg;
+  final Icon? customIcon;
+  final int seconds;
+  final SnackbarClosed? snackbarClosed;
+
+  GetErrorSnackBar({
+    super.key,
+    required this.msg,
+    this.customIcon,
+    this.seconds = 3,
+    this.snackbarClosed,
+  }) : super(
+         margin: const EdgeInsets.all(8),
+         duration: Duration(seconds: seconds),
+         borderRadius: 8,
+         backgroundColor: Colors.red,
+         icon:
+             customIcon ??
+             const Icon(Icons.cancel_rounded, color: Colors.white),
+         messageText: Text(msg, style: const TextStyle(color: Colors.white)),
+         snackbarStatus: (status) {
+           if (status == SnackbarStatus.CLOSED && snackbarClosed != null) {
+             snackbarClosed();
+           }
+         },
+       );
+
+  @override
+  String get message => msg;
+}

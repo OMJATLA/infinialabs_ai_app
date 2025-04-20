@@ -6,4 +6,6 @@ abstract class AuthRepository {
   Future<AuthData> requestLogIn({required Map<String, dynamic> logInMap});
 
   Future<String?> getAuthToken();
+
+  Future<void> removeAuthInfo();
 }

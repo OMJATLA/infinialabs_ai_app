@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:infinialabs_ai/data%20provider/auth/auth_repository.dart';
 
 part 'app_init_event.dart';
@@ -29,6 +30,7 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
     } catch (_) {
       emit(const AppInitLoggedOutState());
     }
+    FlutterNativeSplash.remove();
   }
 
   void _onAppInitLogInEvent(
@@ -42,6 +44,7 @@ class AppInitBloc extends Bloc<AppInitEvent, AppInitState> {
     AppInitLogOffEvent event,
     Emitter<AppInitState> emit,
   ) {
+    authRepository.removeAuthInfo();
     emit(const AppInitLoggedOutState());
   }
 }

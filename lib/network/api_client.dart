@@ -32,7 +32,7 @@ class ApiClient {
     if (requestOptions.headers[AppConstants.authorization] == null) {
       final token = await _getAuthorizationToken(requestOptions.uri.path);
       if (token != null) {
-        requestOptions.headers[AppConstants.authorization] = token;
+        requestOptions.headers[AppConstants.authorization] = 'Bearer $token';
       }
     }
     requestInterceptorHandler.next(requestOptions);

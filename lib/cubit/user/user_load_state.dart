@@ -16,12 +16,12 @@ final class UserLoadingState extends UserLoadState {
 }
 
 final class UserLoadedState extends UserLoadState {
-  // const UserLoadedState(this.user);
+  const UserLoadedState({required this.user});
 
-  // final User user;
+  final User user;
 
-  // @override
-  // List<Object> get props => [user];
+  @override
+  List<Object> get props => [user];
 }
 
 final class UserLoadFailedState extends UserLoadState {

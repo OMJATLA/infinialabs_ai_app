@@ -1,3 +1,5 @@
+import 'package:infinialabs_ai/model/user.dart';
+
 abstract class UserRepository {
-  Future<void> getUserProfile();
+  Future<User> getUserProfile();
 }

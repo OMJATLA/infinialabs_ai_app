@@ -13,7 +13,6 @@ final lightThemeData = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
-      shape: const ContinuousRectangleBorder(),
       foregroundColor: Colors.white,
       backgroundColor: AppColors.sThemePColor,
       disabledBackgroundColor: const Color(0xffdedee3),
@@ -25,20 +24,24 @@ final lightThemeData = ThemeData(
     titleSpacing: 0,
     // backgroundColor: sThemeBgAppBar,
     shadowColor: Colors.grey,
-    // surfaceTintColor: sThemeBgAppBar,
+    surfaceTintColor: AppColors.colorWhite,
     elevation: 1,
   ),
   inputDecorationTheme: const InputDecorationTheme(
     contentPadding: EdgeInsets.all(12),
     helperMaxLines: 2,
     focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
       borderSide: BorderSide(color: AppColors.sThemePColor, width: 2),
     ),
+
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.color999999),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(color: AppColors.color7d4bff),
     ),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: AppColors.color999999),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      borderSide: BorderSide(color: AppColors.color7d4bff),
     ),
   ),
   textTheme: const TextTheme(
