@@ -2,6 +2,7 @@ import 'package:infinialabs_ai/model/auth_data.dart';
 import 'package:infinialabs_ai/data%20provider/auth/auth_local_repository.dart';
 import 'package:infinialabs_ai/data%20provider/auth/auth_nw_repository.dart';
 import 'package:infinialabs_ai/data%20provider/auth/auth_repository.dart';
+import 'package:infinialabs_ai/utils/app_constants.dart';
 
 class AuthAppRepository extends AuthRepository {
   final _userAuthNWRepo = AuthNWRepository();
@@ -14,8 +15,10 @@ class AuthAppRepository extends AuthRepository {
     final authData = await _userAuthNWRepo.requestSignUp(signUpMap: signUpMap);
     if (authData.accessToken != null) {
       await _userAuthLocalRepo.saveAuthToken(authData.accessToken!);
+      return authData;
     }
-    return authData;
+
+    throw Exception(AppConstants.unableToSignUpUser);
   }
 
   @override
@@ -25,8 +28,10 @@ class AuthAppRepository extends AuthRepository {
     final authData = await _userAuthNWRepo.requestLogIn(logInMap: logInMap);
     if (authData.accessToken != null) {
       await _userAuthLocalRepo.saveAuthToken(authData.accessToken!);
+      return authData;
     }
-    return authData;
+
+    throw Exception(AppConstants.unableToLogInUser);
   }
 
   @override
